@@ -1,10 +1,15 @@
-public class Students {
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import java.util.List;
+
+public class Student {
   private int student_id;
   private String name;
   private String surname;
   private String email;
 
-  public Students(int student_id, String name, String surname, String email) {
+  public Student( int student_id, String name, String surname, String email ) {
     this.student_id = student_id;
     this.name = name;
     this.surname = surname;
@@ -45,11 +50,30 @@ public class Students {
 
   @Override
   public String toString() {
-    return "Students{" +
+    return "Student{" +
         "student_id=" + student_id +
         ", name='" + name + '\'' +
         ", surname='" + surname + '\'' +
         ", email='" + email + '\'' +
         '}';
   }
+
+  static public void displayStudents( List<Student> list ) {
+    String tableName = "";
+    try {
+      Statement stmt = DataAccess.dataAccess.getConnection().createStatement();
+      String query = "SELECT * FROM students";
+      ResultSet rs = stmt.executeQuery(query);
+      ResultSetMetaData resultSetMetaData = rs.getMetaData();
+      tableName = resultSetMetaData.getTableName(1);
+    }
+      catch (Exception e) {
+      e.printStackTrace();
+    }
+    System.out.println("\n** ... parsing " + tableName + " TABLE **\n");
+    for (Student item : list) {
+      System.out.println(item + "\n");
+    }
+  }
+
 }
