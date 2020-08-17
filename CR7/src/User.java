@@ -1,6 +1,6 @@
 public class User {
   private static final String user = "root";
-  private static final String password = "Ishbtp1984##";
+  private static final String password = "";
 
   public static String getUser() {
     return user;
