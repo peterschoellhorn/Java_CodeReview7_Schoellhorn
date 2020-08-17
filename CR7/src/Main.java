@@ -3,7 +3,7 @@ import java.sql.SQLException;
 
 public class Main {
 
-
+  public static DataAccess dataAccess;
 
   public static void main( String[] args ) {
 
@@ -20,7 +20,7 @@ public class Main {
 
   static public void stop() {
     try {
-      DataAccess dataAccess.closeDb();
+      dataAccess.closeDb();
     } catch (Exception e) {
       e.printStackTrace();
     }
