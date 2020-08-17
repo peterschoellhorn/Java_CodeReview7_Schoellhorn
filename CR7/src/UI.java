@@ -1,8 +1,9 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class UI {
 
-  static DataAccess dataAccess;
+  public static DataAccess dataAccess;
 
   public static void menu() {
 
@@ -41,11 +42,11 @@ public class UI {
 
     while (toContinue) {
       System.out.println(menu);
-      Scanner inputScanner = new Scanner(System.in);
-      int input;
-      input = inputScanner.nextInt();
       Main.init();
-      switch (input) {
+      Scanner inputScanner = new Scanner(System.in);
+      int input_test = inputScanner.nextInt();
+
+      switch (input_test) {
         case 0:
           Main.stop();
           System.out.println("PROGRAM CLOSED");
@@ -53,6 +54,7 @@ public class UI {
           break;
         case 1:
           try {
+            dataAccess.getAllRowsStudents();
             Student.displayStudents(dataAccess.getAllRowsStudents());
           } catch (Exception e) {
             e.printStackTrace();
@@ -66,6 +68,7 @@ public class UI {
           }
         case 3:
           try {
+            dataAccess.getAllRowsClasses();
             Classes.displayClasses(dataAccess.getAllRowsClasses());
           } catch (Exception e) {
             e.printStackTrace();
@@ -75,6 +78,7 @@ public class UI {
           Scanner subInputScanner = new Scanner(System.in);
           int selectTeacher = subInputScanner.nextInt();
           try {
+            dataAccess.getTeachersCourse(selectTeacher);
             Enrollment.displayTeachersCourses(dataAccess.getTeachersCourse(selectTeacher));
           } catch (Exception e) {
             e.printStackTrace();

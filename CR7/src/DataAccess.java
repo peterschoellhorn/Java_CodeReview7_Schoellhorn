@@ -5,7 +5,6 @@ import java.util.List;
 
 public class DataAccess {
 
-  public static DataAccess dataAccess;
   private final Connection connection;
 
   public DataAccess() throws SQLException, ClassNotFoundException {
@@ -16,7 +15,7 @@ public class DataAccess {
         url,
         User.getUser(),
         User.getPassword());
-
+    System.out.println("** Connected to Database **");
     connection.setAutoCommit(true);
     connection.setReadOnly(false);
   }

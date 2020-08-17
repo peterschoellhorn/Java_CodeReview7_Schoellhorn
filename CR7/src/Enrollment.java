@@ -7,6 +7,7 @@ public class Enrollment {
   private final int student_id;
   private final int course_id;
   private final int teacher_id;
+  public List<Classes> list;
 
 
   public Enrollment( int student_id, int course_id, int teacher_id ) {
@@ -27,19 +28,6 @@ public class Enrollment {
   }
 
   static public void displayTeachersCourses ( List<Classes> list) {
-    String tableName = "";
-    try {
-      Statement stmt = DataAccess.dataAccess.getConnection().createStatement();
-      String query = "SELECT * FROM enrollment";
-      ResultSet rs = stmt.executeQuery(query);
-      ResultSetMetaData resultSetMetaData = rs.getMetaData();
-      tableName = resultSetMetaData.getTableName(1);
-    }
-      catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    System.out.println("\n** ... parsing " + tableName + " TABLE **\n");
     for (Classes item : list) {
       System.out.println(item + "\n");
     }

@@ -1,8 +1,12 @@
+import javax.sql.DataSource;
+import java.sql.SQLException;
+
 public class Main {
 
-  static DataAccess dataAccess;
+
 
   public static void main( String[] args ) {
+
     UI.menu();
 
   }
@@ -16,7 +20,7 @@ public class Main {
 
   static public void stop() {
     try {
-      dataAccess.closeDb();
+      DataAccess dataAccess.closeDb();
     } catch (Exception e) {
       e.printStackTrace();
     }

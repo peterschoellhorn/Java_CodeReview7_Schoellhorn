@@ -8,6 +8,7 @@ public class Student {
   private String name;
   private String surname;
   private String email;
+  public List<Student> list;
 
   public Student( int student_id, String name, String surname, String email ) {
     this.student_id = student_id;
@@ -59,18 +60,6 @@ public class Student {
   }
 
   static public void displayStudents( List<Student> list ) {
-    String tableName = "";
-    try {
-      Statement stmt = DataAccess.dataAccess.getConnection().createStatement();
-      String query = "SELECT * FROM students";
-      ResultSet rs = stmt.executeQuery(query);
-      ResultSetMetaData resultSetMetaData = rs.getMetaData();
-      tableName = resultSetMetaData.getTableName(1);
-    }
-      catch (Exception e) {
-      e.printStackTrace();
-    }
-    System.out.println("\n** ... parsing " + tableName + " TABLE **\n");
     for (Student item : list) {
       System.out.println(item + "\n");
     }

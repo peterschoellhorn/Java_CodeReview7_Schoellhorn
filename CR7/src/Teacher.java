@@ -56,20 +56,6 @@ public class Teacher {
         '}';
   }
   static public void displayTeachers ( List< Teacher > list) {
-
-    String tableName = "";
-    try {
-      Statement stmt = DataAccess.dataAccess.getConnection().createStatement();
-      String query = "SELECT * FROM teachers";
-      ResultSet rs = stmt.executeQuery(query);
-      ResultSetMetaData resultSetMetaData = rs.getMetaData();
-      tableName = resultSetMetaData.getTableName(1);
-    }
-      catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    System.out.println("\n** ... parsing " + tableName + " TABLE **\n");
     for (Teacher item : list) {
       System.out.println(item + "\n");
     }
