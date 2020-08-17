@@ -1,3 +1,4 @@
+import javax.sql.DataSource;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class UI {
 
     String menu =
 
-        "+---------------------------------------------+\n" +
+            "+---------------------------------------------+\n" +
             "|          SCHOOL ADMIN SYSTEM V 0.9          |\n" +
             "|---------------------------------------------|\n" +
             "|                   WELCOME                   |\n" +
@@ -39,14 +40,16 @@ public class UI {
 
 
     boolean toContinue = true;
+    Scanner inputScanner = new Scanner(System.in);
+    int input = inputScanner.nextInt();
+
+    dataAccess= Main.init();
 
     while (toContinue) {
       System.out.println(menu);
-      Main.init();
-      Scanner inputScanner = new Scanner(System.in);
-      int input_test = inputScanner.nextInt();
 
-      switch (input_test) {
+
+      switch (input) {
         case 0:
           Main.stop();
           System.out.println("PROGRAM CLOSED");
@@ -54,7 +57,6 @@ public class UI {
           break;
         case 1:
           try {
-            dataAccess.getAllRowsStudents();
             Student.displayStudents(dataAccess.getAllRowsStudents());
           } catch (Exception e) {
             e.printStackTrace();
@@ -66,6 +68,7 @@ public class UI {
           } catch (Exception e) {
             e.printStackTrace();
           }
+          break;
         case 3:
           try {
             dataAccess.getAllRowsClasses();
@@ -73,20 +76,19 @@ public class UI {
           } catch (Exception e) {
             e.printStackTrace();
           }
+          break;
         case 4:
           System.out.println("Please enter the ID of the Teacher to show assigned classes: ");
-          Scanner subInputScanner = new Scanner(System.in);
-          int selectTeacher = subInputScanner.nextInt();
+          int selectTeacher = inputScanner.nextInt();
           try {
             dataAccess.getTeachersCourse(selectTeacher);
             Enrollment.displayTeachersCourses(dataAccess.getTeachersCourse(selectTeacher));
           } catch (Exception e) {
             e.printStackTrace();
           }
-          subInputScanner.close();
           break;
       }
-      inputScanner.close();
+
     }
   }
 }

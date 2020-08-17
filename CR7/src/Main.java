@@ -10,12 +10,13 @@ public class Main {
     UI.menu();
 
   }
-  static public void init() {
+  static public DataAccess init() {
     try {
       dataAccess = new DataAccess();
     } catch (Exception e) {
       e.printStackTrace();
     }
+    return dataAccess;
   }
 
   static public void stop() {
