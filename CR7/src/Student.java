@@ -61,7 +61,7 @@ public class Student {
 
   static public void displayStudents( List<Student> list ) {
     for (Student item : list) {
-      System.out.println(item + "\n");
+      System.out.println(item.toString() + "\n");
     }
   }
 

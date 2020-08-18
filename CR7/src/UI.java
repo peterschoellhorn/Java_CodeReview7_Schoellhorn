@@ -40,15 +40,15 @@ public class UI {
 
 
     boolean toContinue = true;
-    Scanner inputScanner = new Scanner(System.in);
-    int input = inputScanner.nextInt();
+
 
     dataAccess= Main.init();
 
     while (toContinue) {
       System.out.println(menu);
-
-
+      Scanner inputScanner = new Scanner(System.in);
+      int input;
+      input=inputScanner.nextInt();
       switch (input) {
         case 0:
           Main.stop();
@@ -71,7 +71,6 @@ public class UI {
           break;
         case 3:
           try {
-            dataAccess.getAllRowsClasses();
             Classes.displayClasses(dataAccess.getAllRowsClasses());
           } catch (Exception e) {
             e.printStackTrace();
@@ -81,7 +80,6 @@ public class UI {
           System.out.println("Please enter the ID of the Teacher to show assigned classes: ");
           int selectTeacher = inputScanner.nextInt();
           try {
-            dataAccess.getTeachersCourse(selectTeacher);
             Enrollment.displayTeachersCourses(dataAccess.getTeachersCourse(selectTeacher));
           } catch (Exception e) {
             e.printStackTrace();

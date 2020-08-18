@@ -57,7 +57,7 @@ public class Teacher {
   }
   static public void displayTeachers ( List< Teacher > list) {
     for (Teacher item : list) {
-      System.out.println(item + "\n");
+      System.out.println(item.toString() + "\n");
     }
   }
 }

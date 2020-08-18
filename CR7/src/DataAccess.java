@@ -75,17 +75,23 @@ public class DataAccess {
   }
 
 
-  public List<Classes> getTeachersCourse(int selectTeacher) throws SQLException {
-    String sql =  ("SELECT * FROM enrollment" +
-                  "WHERE teacher_id="+selectTeacher);
+  public List<Enrollment> getTeachersCourse(int selectTeacher) throws SQLException {
+    String sql = "SELECT classes.*, teachers.* " +
+        "FROM teachers " +
+        "INNER JOIN enrollment " +
+        "ON teachers.teacher_id = enrollment.FK_teacher_id " +
+        "INNER JOIN classes " +
+        "ON classes.course_id = enrollment.FK_course_id " +
+        "WHERE teachers.teacher_id=" + selectTeacher;
     PreparedStatement preparedStatement = connection.prepareStatement(sql);
     ResultSet resultSet = preparedStatement.executeQuery();
-    List<Classes> list = new ArrayList<>();
+    List<Enrollment> list = new ArrayList<>();
 
     while(resultSet.next()) {
-      int course_id = resultSet.getInt("course_id");
-      String class_name = resultSet.getString("class_name");
-      list.add(new Classes(course_id, class_name));
+      int FK_student_id = resultSet.getInt("FK_student_id");
+      int FK_course_id = resultSet.getInt("FK_course_id");
+      int FK_teacher_id = resultSet.getInt("FK_teacher_id");
+      list.add(new Enrollment(FK_student_id, FK_course_id, FK_teacher_id));
     }
     preparedStatement.close();
     return list;

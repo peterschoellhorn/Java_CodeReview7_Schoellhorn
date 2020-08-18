@@ -37,7 +37,7 @@ public class Classes {
   }
   static public void displayClasses ( List<Classes> list) {
     for (Classes item : list) {
-      System.out.println(item + "\n");
+      System.out.println(item.toString() + "\n");
     }
   }
 }
