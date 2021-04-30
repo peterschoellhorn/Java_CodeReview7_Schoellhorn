@@ -1,6 +1,6 @@
 public class User {
-  private static final String user = ${"DB_USER"};
-  private static final String password = ${"DB_ROOT"};
+  private static final String user = ${DB_USER};
+  private static final String password = ${DB_ROOT};
 
   public static String getUser() {
     return user;
